@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A00项目详情 - TJFS 科技项目中心</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to a shared CSS file -->
+    <style>
+        /* Basic styles for the details page, assuming shared styles in styles.css */
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark) url('素材/Startbackground4.png') no-repeat center center fixed; /* Using another background */
+            background-size: cover;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px; /* Slightly narrower for content page */
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: rgba(10, 10, 26, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+        }
+        h1, h2 {
+            color: var(--accent);
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--bg-dark);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .back-link:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 247, 255, 0.4);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Include the variables definition, perhaps via a shared CSS or duplication -->
+    <style>
+         :root {
+            --primary: #00f7ff;
+            --secondary: #ff00e6;
+            --accent: #f8f8f2;
+            --bg-dark: #0a0a1a;
+            --bg-light: rgba(26, 26, 46, 0.85);
+            --text: #e6f1ff;
+            --text-muted: #bd93f9;
+        }
+    </style>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回项目中心</a>
+        <h1>A00项目：核心系统架构与基础服务</h1>
+        <section>
+            <h2>项目概述</h2>
+            <p>A00项目是TJFS科技生态系统的基石，负责构建和维护所有其他项目运行所需的核心架构、通用服务和基础设施。</p>
+            <p>此项目的目标是提供一个稳定、高效、可扩展且安全的基础平台，支撑包括通讯、文件传输、流媒体、游戏等在内的多样化应用。</p>
+            <p>全部TJFS项目于本地部署，暂未考虑迁移至云端（主要是不会:p）。</p>
+        </section>
+        <section>
+            <h2>A00项目主要职责</h2>
+            <ul>
+                <li>统一认证与授权服务</li>
+                <li>分布式配置管理</li>
+                <li>服务发现与负载均衡</li>
+                <li>日志收集与监控系统</li>
+                <li>基础数据存储方案</li>
+                <li>API网关与接口标准化</li>
+                <li>持续集成与部署（CI/CD）流程</li>
+            </ul>
+        </section>
+        <section>
+            <h2>技术栈（示例）</h2>
+            <p>后端可能采用 Java/Spring Boot, Python/FastAPI, Go 等。</p>
+            <p>前端管理界面可能使用 Vue.js 或 React。</p>
+            <p>基础设施涉及 Docker, Kubernetes, Nginx, Redis, PostgreSQL/MySQL 等。</p>
+        </section>
+         <section>
+            <h2>当前状态</h2>
+            <p>各项目正在积极开发中，核心模块已初步完成，正在进行内部测试与集成。</p>
+            <p>诚招后期！这个团队真的不会！</p>
+        </section>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJFS 科技项目中心</title>
+    <script src="particles.js"></script>
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00e6;
+            --accent: #f8f8f2;
+            --bg-dark: #0a0a1a;
+            --bg-light: rgba(26, 26, 46, 0.85);
+            --text: #e6f1ff;
+            --text-muted: #bd93f9;
+            --disabled-bg: #555;
+            --disabled-text: #aaa;
+        }
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+        body {
+    position: relative;
+            height: 100%;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark) url('素材/Startbackground2.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(10, 10, 26, 0.7);
+            border-radius: 10px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 2rem 0;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.5);
+            margin-bottom: 2rem;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+        h1 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            font-size: 2.2rem;
+            text-shadow: 0 0 8px rgba(248, 248, 242, 0.3);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        .project-card {
+    animation: glow-border 2s ease-in-out infinite alternate;
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            opacity: 0;
+            animation: fadeInCard 0.5s ease-out forwards;
+            animation-delay: calc(var(--card-index) * 0.1s);
+        }
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 247, 255, 0.25);
+            border-color: var(--primary);
+        }
+        .project-card h3 {
+            margin-top: 0;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+        .project-card p {
+            color: var(--text-muted);
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+        .novel-section {
+            margin-top: 4rem;
+            text-align: center;
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        .novel-section h2 {
+             color: var(--accent);
+             margin-bottom: 0.5rem;
+        }
+        .novel-section p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+    position: relative;
+    overflow: hidden;
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--bg-dark);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin-top: auto;
+        }
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 247, 255, 0.5);
+            filter: brightness(1.1);
+        }
+        .btn.disabled, .btn:disabled {
+            background: var(--disabled-bg);
+            color: var(--disabled-text);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            filter: none;
+        }
+        .btn.disabled:hover, .btn:disabled:hover {
+            background: var(--disabled-bg);
+            transform: none;
+            box-shadow: none;
+            filter: none;
+        }
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+             .logo {
+                font-size: 2rem;
+            }
+            header {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 247, 255, 0.5);
+            color: var(--text-muted);
+        }
+        footer p {
+             margin-bottom: 0.5rem;
+        }
+        @keyframes glow-border {
+    from { box-shadow: 0 0 10px var(--primary), 0 0 20px var(--secondary); }
+    to { box-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary); }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    .btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 600ms linear;
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">TJFS 科技项目中心</div>
+            <nav>
+                <a href="#" class="btn">登录</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1>我们的项目</h1>
+            <div class="projects-grid">
+                <div class="project-card" style="--card-index: 0;">
+                    <h3>A00项目</h3>
+                    <p>核心系统架构与基础服务。</p>
+                    <a href="project_A00_details.html" class="btn">了解详情</a>
+                </div>
+                <div class="project-card" style="--card-index: 1;">
+                    <h3>A01项目</h3>
+                    <p>星际RPG游戏：托尼琼斯的太空幻想。</p>
+                    <a href="http://tjfs.top:7700/" class="btn" target="_blank">打开游戏</a>
+                </div>
+                <div class="project-card" style="--card-index: 2;">
+                    <h3>A02项目</h3>
+                    <p>科幻小说《宝石》太空冒险故事。</p>
+                    <a href="novel.html" class="btn">阅读小说</a>
+                </div>
+                <div class="project-card" style="--card-index: 3;">
+                    <h3>A03项目</h3>
+                    <p>TJFS非加密通讯系统。</p>
+                    <a href="http://tjfs.top:5000/" class="btn" target="_blank">进入通讯</a>
+                </div>
+                <div class="project-card" style="--card-index: 4;">
+                    <h3>A04项目</h3>
+                    <p>TJFS视频流媒体服务。</p>
+                     <a href="http://tjfs.top:5050/" class="btn" target="_blank">观看视频</a>
+                </div>
+                <div class="project-card" style="--card-index: 5;">
+                    <h3>A05项目</h3>
+                    <p>Java网页端文件传输系统。</p>
+                    <button class="btn" disabled>敬请期待</button>
+                </div>
+                <div class="project-card" style="--card-index: 6;">
+                    <h3>A06项目</h3>
+                    <p>TJFS非加密文件下载系统。</p>
+                    <a href="http://tjfs.top:5020/" class="btn" target="_blank">进入系统</a>
+                </div>
+                <div class="project-card" style="--card-index: 7;">
+                     <h3>B01项目</h3>
+                     <p>基于Unity引擎的星际剧情游戏。</p>
+                     <button class="btn" disabled>敬请期待</button>
+                </div>
+                 <div class="project-card" style="--card-index: 8;">
+                    <h3>W01项目</h3>
+                    <p>微信小游戏原型（开发暂停）。</p>
+                    <button class="btn" disabled>暂无计划</button>
+                </div>
+            </div>
+        </main>
+    <footer style="text-align: center; margin-top: 3rem; padding: 1rem; border-top: 1px solid var(--primary); color: var(--text-muted);">
+        <p>联系方式：zhngzeyu12138@outlook.com</p>
+        <p>核心成员：TonyJones（春雄琦三），XalloyKnight，Royalty（清丨茶）</p>
+        <p>&copy; 2025 TJFS studio. 保留所有权利。</p>
+    </footer>
+    </div>
+</body>
+</html>

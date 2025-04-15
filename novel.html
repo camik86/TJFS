@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝石 - 科幻小说</title>
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00e6;
+            --accent: #f8f8f2; /* Consistent with index.html */
+            --bg-dark: #0a0a1a;
+            --bg-light: rgba(26, 26, 46, 0.85); /* Consistent with index.html */
+            --text: #e6f1ff;
+            --text-muted: #bd93f9; /* Consistent with index.html */
+            --content-bg: rgba(10, 10, 26, 0.8); /* Specific for content area background */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; /* Consistent font */
+            background: var(--bg-dark) url('素材/Startbackground3.png') no-repeat center center fixed; /* Changed background image */
+            background-size: cover;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7; /* Slightly increased line height for readability */
+        }
+        .container {
+            display: flex;
+            max-width: 1400px; /* Wider container for better reading */
+            margin: 2rem auto;
+            padding: 2rem;
+            gap: 2rem; /* Added gap between chapters and content */
+        }
+        .chapters {
+            width: 280px; /* Slightly wider chapter list */
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            flex-shrink: 0; /* Prevent shrinking */
+            height: fit-content; /* Fit height to content */
+            position: sticky; /* Make chapter list sticky */
+            top: 2rem; /* Sticky position offset */
+        }
+        .chapters h2 {
+            color: var(--accent);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 60vh; /* Limit height and enable scroll */
+            overflow-y: auto; /* Add scroll if needed */
+        }
+        /* Custom Scrollbar for Chapter List */
+        .chapter-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chapter-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .chapter-list::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        .chapter-list::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        .chapter-item {
+            padding: 0.6rem 0.2rem; /* Adjusted padding */
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(189, 147, 249, 0.1); /* Subtle separator */
+        }
+        .chapter-item:last-child {
+            border-bottom: none;
+        }
+        .chapter-item:hover {
+            color: var(--primary);
+            background-color: rgba(0, 247, 255, 0.05);
+        }
+        .chapter-item.active {
+            color: var(--accent);
+            font-weight: bold;
+            background-color: rgba(0, 247, 255, 0.1);
+        }
+        .content {
+            flex: 1;
+            padding: 2rem;
+            background-color: var(--content-bg);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        .content h1, .content h3 {
+             color: var(--accent);
+             text-align: center;
+             margin-bottom: 0.5rem;
+        }
+        .content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+        }
+        .content h3 {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        .chapter-content {
+            line-height: 1.8; /* Further increase for readability */
+            font-size: 1.05rem; /* Slightly larger font */
+        }
+        .chapter-content h2 {
+             color: var(--accent);
+             margin-top: 1.5rem;
+             margin-bottom: 1rem;
+             font-size: 1.6rem;
+             text-align: center;
+        }
+        .chapter-content p {
+            margin-bottom: 1.2rem;
+            text-indent: 2em; /* Add indentation */
+            color: var(--text);
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 1.5rem; /* Increased margin */
+            padding: 0.8rem 1.8rem; /* Match index button padding */
+            background: linear-gradient(45deg, var(--primary), var(--secondary)); /* Match index button */
+            color: var(--bg-dark); /* Match index button */
+            border-radius: 6px; /* Match index button */
+            text-decoration: none;
+            font-weight: bold; /* Match index button */
+            transition: all 0.3s ease; /* Match index button */
+            border: none; /* Match index button */
+            cursor: pointer; /* Match index button */
+            text-align: center;
+        }
+        .back-btn:hover {
+            transform: translateY(-3px) scale(1.05); /* Match index button hover */
+            box-shadow: 0 8px 20px rgba(0, 247, 255, 0.5); /* Match index button hover */
+            filter: brightness(1.1); /* Match index button hover */
+        }
+        @media (max-width: 992px) { /* Adjusted breakpoint */
+            .container {
+                flex-direction: column;
+                max-width: 95%;
+            }
+            .chapters {
+                width: 100%;
+                position: static; /* Remove sticky positioning on smaller screens */
+                margin-bottom: 2rem;
+                max-height: none; /* Remove height limit */
+            }
+            .chapter-list {
+                 max-height: 250px; /* Limit height for mobile scroll */
+            }
+            .content {
+                 width: auto; /* Adjust width */
+            }
+        }
+         @media (max-width: 768px) {
+             .content h1 {
+                font-size: 1.8rem;
+             }
+             .chapter-content {
+                font-size: 1rem;
+             }
+             .chapter-content h2 {
+                font-size: 1.4rem;
+             }
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chapters">
+            <a href="index.html" class="back-btn">← 返回项目中心</a>
+            <h2>章节列表</h2>
+            <ul class="chapter-list" id="chapterList">
+                <!-- 章节列表由JavaScript动态生成 -->
+            </ul>
+        </div>
+        <div class="content">
+            <h1>宝石</h1>
+            <h3>作者：Tony Jones</h3>
+            <div class="chapter-content" id="chapterContent">
+                <!-- 内容由JavaScript动态加载 -->
+                <h2>加载中...</h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        const chapterFiles = ['宝石-第〇章.txt','宝石-第一章.txt','宝石-第二章.txt'];
+        const chapterList = document.getElementById('chapterList');
+        const chapterContent = document.getElementById('chapterContent');
+
+        chapterFiles.forEach((file, index) => {
+            const li = document.createElement('li');
+            li.className = 'chapter-item' + (index === 0 ? ' active' : '');
+            li.textContent = file.replace('宝石-', '').replace('.txt', '');
+            li.onclick = () => {
+                document.querySelectorAll('.chapter-item').forEach(item => item.classList.remove('active'));
+                li.classList.add('active');
+                loadChapter(file);
+            };
+            chapterList.appendChild(li);
+        });
+
+        async function loadChapter(filename) {
+            try {
+                // Display loading state
+                chapterContent.innerHTML = '<h2>加载中...</h2>';
+
+                const response = await fetch(`网页内容/${filename}`);
+                if (!response.ok) {
+                     throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const content = await response.text();
+
+                // Simple processing: Assuming first line is title, rest is paragraphs
+                const lines = content.trim().split('\n');
+                const title = lines[0] || filename.replace('宝石-', '').replace('.txt', '');
+                const paragraphs = lines.slice(1).map(p => `<p>${p.trim()}</p>`).join('');
+
+                chapterContent.innerHTML = `<h2>${title}</h2>${paragraphs}`;
+            } catch (error) {
+                console.error('加载章节失败:', error);
+                chapterContent.innerHTML =
+                    '<h2>加载失败</h2><p>无法加载章节内容，请检查文件是否存在或网络连接是否正常。</p>';
+            }
+        }
+
+        // Initial load
+        if (chapterFiles.length > 0) {
+            loadChapter(chapterFiles[0]);
+        }
+    </script>
+</body>
+</html>
